@@ -1,28 +1,17 @@
 package com.ciuc.andrii.firebase_1;
 
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alorma.github.sdk.bean.dto.response.Token;
-import com.alorma.github.sdk.bean.dto.response.User;
-import com.alorma.github.sdk.services.login.RequestTokenClient;
-import com.alorma.github.sdk.services.user.GetAuthUserClient;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -30,7 +19,6 @@ import com.facebook.FacebookSdk;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
 import com.google.android.gms.auth.api.Auth;
@@ -50,17 +38,16 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GithubAuthProvider;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.TwitterAuthProvider;
-import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Arrays;
-
-import rx.Observer;
+import com.shaishavgandhi.loginbuttons.BaseButton;
+import com.shaishavgandhi.loginbuttons.FacebookButton;
+import com.shaishavgandhi.loginbuttons.GoogleButton;
+import com.shaishavgandhi.loginbuttons.TwitterButton;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
@@ -69,18 +56,23 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     TextInputEditText edit_login,edit_passw;
     Button btn_autor,btn_regis;
 
-    SignInButton btn_sign_in;
+    SignInButton btn_sign_in_google;
     Button btn_sign_out;
     TextView text1;
     ImageButton imageView;
-    LoginButton btn_login_facebook;
-    Button btn_gitHub;
+    LoginButton btn_login_facebook1;
+    FacebookButton btn_login_facebook;
+    GoogleButton btn_login_google;
+    TwitterButton btn_twitter_login;
+    BaseButton btn_gitHub_login;
 
     GoogleApiClient googleApiClient;
     GoogleSignInAccount account;
     FirebaseUser user;
 
     ProfilePictureView profilePictureView;
+
+    private TwitterLoginButton btn_twitter;
 
     private static final String EMAIL = "email";
 
@@ -93,17 +85,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onCreate(savedInstanceState);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
+
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
 
-        Toast.makeText(MainActivity.this, mAuth.getCurrentUser().getPhotoUrl().toString(),
-                Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.this, mAuth.getCurrentUser().getPhotoUrl().toString(),
+                //Toast.LENGTH_SHORT).show();
 
-        imageView = findViewById(R.id.image_user);
 
-        Uri uri = mAuth.getCurrentUser().getPhotoUrl();
-        imageView.setImageBitmap(doInBackground(uri.toString()));
+       // Uri uri = mAuth.getCurrentUser().getPhotoUrl();
         //Picasso.with(this).load(uri).into(imageView);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -115,22 +106,65 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         btn_autor = findViewById(R.id.btn_autor);
         btn_regis = findViewById(R.id.btn_regis);
 
-        btn_sign_in = findViewById(R.id.btn_sign_in_b);
+        btn_sign_in_google = findViewById(R.id.btn_sign_in_b);
         btn_sign_out = findViewById(R.id.btn_sing_out);
 
         text1 = findViewById(R.id.text1);
 
-        btn_gitHub = findViewById(R.id.btn_github);
+        btn_gitHub_login = findViewById(R.id.btn_github);
+
+        btn_twitter_login = findViewById(R.id.btn_twitter_login);
 
 
 
 
         btn_login_facebook = findViewById(R.id.btn_facebook_login);
-        btn_login_facebook.setReadPermissions("email", "public_profile");
+        //btn_login_facebook.setReadPermissions("email", "public_profile");
+
+        btn_login_facebook1 = findViewById(R.id.btn_facebook_login1);
+        btn_login_facebook1.setReadPermissions("email", "public_profile");
+
+        btn_login_google = findViewById(R.id.btn_google_login);
+
+        btn_login_google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // btn_sign_in_google.performClick();
+                SignInGoogle();
+            }
+        });
+
+        btn_twitter_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
 
+        btn_twitter = findViewById(R.id.btn_twitter);
+        /*
+        btn_twitter.setCallback(new Callback<TwitterSession>() {
+            @Override
+            public void success(Result<TwitterSession> result) {
+                Log.d(TAG, "twitterLogin:success" + result);
+                handleTwitterSession(result.data);
+            }
 
+            @Override
+            public void failure(TwitterException exception) {
+                Log.w(TAG, "twitterLogin:failure", exception);
+                updateUI(null);
+            }
+        });*/
+
+        btn_login_facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_login_facebook1.performClick();
+            }
+        });
 
         LoginManager.getInstance().registerCallback(mCallbackManager,
                 new FacebookCallback<LoginResult>() {
@@ -151,6 +185,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                         // App code
                     }
                 });
+
+
         /*
         btn_login_facebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -166,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });*/
 
 
-        btn_sign_in.setOnClickListener(new View.OnClickListener() {
+        btn_sign_in_google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SignInGoogle();
@@ -200,17 +236,36 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });
 
 
-        btn_gitHub.setOnClickListener(new View.OnClickListener() {
+        /*btn_gitHub_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signWithGitHub();
             }
-        });
+        });*/
+    }
+
+    private void handleTwitterSession(TwitterSession session) {
+        AuthCredential credential = TwitterAuthProvider.getCredential(session.getAuthToken().token,session.getAuthToken().secret);
+
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
     }
 
 
 
-    protected Bitmap doInBackground(String... url) {
+  /*  protected Bitmap doInBackground(String... url) {
 
         String urldisplay = url[0];
         Bitmap bitmap = null;
@@ -221,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             e.printStackTrace();
         }
         return bitmap;
-    }
+    }*/
 /*
     public void sendLoginGithubData( View view ){
 
@@ -329,14 +384,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            user = mAuth.getCurrentUser();
+                           // user = mAuth.getCurrentUser();
                             Toast.makeText(MainActivity.this, user.getDisplayName(),
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(user);
-                            Uri uri = user.getPhotoUrl();
+                           // updateUI(user);
+                            //Uri uri = user.getPhotoUrl();
                             //imageView.setImageURI(uri);
-                            Toast.makeText(MainActivity.this, uri.toString(),
-                                    Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this, uri.toString(),
+                                 //   Toast.LENGTH_SHORT).show();
                             /*
                             profilePictureView.setProfileId(user.getUid());*/
                             /*Picasso.with(MainActivity.this)
@@ -361,13 +416,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 });
     }
 
-    public static Bitmap getFacebookProfilePicture(String userID) throws IOException {
+   /* public static Bitmap getFacebookProfilePicture(String userID) throws IOException {
         URL imageURL = new URL("https://graph.facebook.com/" + userID + "/picture?type=large");
         Bitmap bitmap = BitmapFactory.decodeStream(imageURL.openConnection().getInputStream());
 
         return bitmap;
     }
-
+*/
 
 
     @Override
@@ -383,6 +438,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onActivityResult(requestCode, resultCode, data);
 
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        //btn_twitter.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN){
             GoogleSignInResult googleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(data);

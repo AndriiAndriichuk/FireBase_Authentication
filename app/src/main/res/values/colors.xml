@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#556270</color>
-    <color name="colorPrimaryDark">#2c3239</color>
-    <color name="colorAccent">#d7f2f7</color>
+    <color name="colorPrimary">#4264A2</color>
+    <color name="colorPrimaryDark">#223353</color>
+    <color name="colorAccent">#e8f6f9</color>
 
     <color name="text1">#fbfbfb</color>
     <color name="text2">#fbfbfb</color>
+    <color name="github">#444444</color>
 
 </resources>

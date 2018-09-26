@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -77,8 +76,85 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+    <com.shaishavgandhi.loginbuttons.FacebookButton
+        android:layout_height="75dp"
+        android:layout_width="75dp"
+        android:id="@+id/btn_facebook_login"
+        android:layout_gravity="center_horizontal"
+        app:roundedCorner = "true"
+        app:roundedCornerRadius = "75dp"
+        app:iconSize = "30dp"
+        android:layout_margin="3dp"
+        android:gravity="center"
+        />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+    <com.shaishavgandhi.loginbuttons.GoogleButton
+        android:layout_height="75dp"
+        android:layout_width="75dp"
+        android:id="@+id/btn_google_login"
+        android:layout_gravity="center_horizontal"
+        app:roundedCorner = "true"
+        app:roundedCornerRadius = "75dp"
+        app:iconSize = "30dp"
+        android:layout_margin="3dp"
+        android:gravity="center"
+        />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        <com.shaishavgandhi.loginbuttons.TwitterButton
+            android:layout_height="75dp"
+            android:layout_width="75dp"
+            android:id="@+id/btn_twitter_login"
+            android:layout_gravity="center_horizontal"
+            app:roundedCorner = "true"
+            app:roundedCornerRadius = "75dp"
+            app:iconSize = "30dp"
+            android:layout_margin="3dp"
+            android:gravity="center"
+            />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        <com.shaishavgandhi.loginbuttons.BaseButton
+            android:layout_height="75dp"
+            android:layout_width="75dp"
+            android:id="@+id/btn_github"
+            android:layout_margin="3dp"
+            android:background="@drawable/btn_circle"
+            android:gravity="center"
+            />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+        <com.facebook.login.widget.LoginButton
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/btn_facebook_login1"
+            android:layout_gravity="center_horizontal"
+            android:visibility="visible"
+            android:layout_weight="1"/>
         <com.google.android.gms.common.SignInButton
             android:id="@+id/btn_sign_in_b"
             android:layout_width="match_parent"
@@ -86,7 +162,8 @@
             android:layout_weight="1"
             android:text="Авторизація"
             android:textColor="@color/text1"
-            android:layout_margin="3dp" />
+            android:layout_margin="3dp"
+            android:visibility="visible"/>
 
         <Button
             android:id="@+id/btn_sing_out"
@@ -96,38 +173,20 @@
             android:text="Signout"
             android:background="@drawable/button_style"
             android:textColor="@color/text1"
-            android:layout_margin="3dp"/>
-        <TextView
+            android:layout_margin="3dp"
+            android:visibility="visible"/>
+        <com.twitter.sdk.android.core.identity.TwitterLoginButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/text1"/>
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/image_user"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/btn_facebook_login"
-        android:layout_gravity="center_horizontal"
-        android:text="  connect_with_facebook"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="GitHub"
-            android:id="@+id/btn_github"
+            android:id="@+id/btn_twitter"
             android:layout_weight="1"/>
     </LinearLayout>
+
 </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/text1"/>
 
 </RelativeLayout>

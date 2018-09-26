@@ -46,6 +46,15 @@ dependencies {
 
     compile 'com.github.alorma:github-sdk:3.2.5'
 
+
+    compile 'com.twitter.sdk.android:twitter:3.1.0'
+
+    compile 'com.shaishavgandhi:login-buttons:1.0.0'
+
+
+
+
+
 }
 
 
