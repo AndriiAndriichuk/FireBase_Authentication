@@ -1,9 +1,13 @@
 <resources>
-    <string name="app_name">FireBase_1</string>
+    <string name="GitHubAccessToken">6dc0be887e0cbc3e4dc3d277e8a0f61d0ddfc2cf</string>
+    <string name="app_name">FireBase Authentication</string>
+
     <string name="facebook_app_id">906925409497211</string>
     <string name="fb_login_protocol_scheme">fb906925409497211</string>
-    <string name="action_sign_in_github">Sign in com GitHub</string>
+
     <string name="github_app_id">677f6fe7066181a931ba</string>
     <string name="github_app_secret">25678675f248911160e39c40fb1e6e0b8843aba8</string>
-    <string name="github_app_url">https://console.firebase.google.com/u/0/project/fir-1-a0cc2/authent</string>
+
+    <string name="twitter_key">VS20L53hWKPRuX1KUdYJfPlRZ</string>
+    <string name="twitter_secret">zIN7sTY64ekvhYfxpHOe8GZdIydPQVgjQNP2G4rYLMwOawwCJ3</string>
 </resources>
