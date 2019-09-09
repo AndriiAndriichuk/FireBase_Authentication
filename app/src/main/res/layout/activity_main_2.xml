@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_user_p"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/img_empty_user"
+                app:civ_border_color="@color/text1"
+                app:civ_border_width="3dp"
+                />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_provider"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="28dp"
+                android:layout_toEndOf="@+id/image_user_p"
+                android:src="@drawable/img_twitter"
+                app:civ_border_color="@color/text1"
+                app:civ_border_width="2dp"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_displayName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:hint="Name"
+            android:textColor="@color/text1"
+            android:textColorHint="@color/text1"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="email"
+            android:textColor="@color/text1"
+            android:textColorHint="@color/text1"
+            android:textSize="30dp"
+            android:visibility="visible"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/btn_log_out"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="6dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button_style"
+                android:gravity="center"
+                android:text="Log out"
+                android:textColor="@color/text1"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

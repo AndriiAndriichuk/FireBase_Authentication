@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Firebase Authentication</string>
+    <string name="GitHubAccessToken" translatable="false">394eca9e6414a4b38565a69a97d7e290f4e71e68</string>
+
+    <string name="facebook_app_id" translatable="false">316336779170919</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb906925409497211</string>
+
+    <string name="github_app_id" translatable="false">11fc38fd7dae1ec8c910</string>
+    <string name="github_app_secret" translatable="false">394eca9e6414a4b38565a69a97d7e290f4e71e68</string>
+
+    <string name="twitter_key" translatable="false" >hs7GJfkYS1El18dw9Q4DbY4XB</string>
+    <string name="twitter_secret" translatable="false" >orvLw21uhv4KQQK5XEFDSwzhXjsh2baw6OkyBJZ3vzUMku49Je</string>
+
+    <string name="Email">login</string>
+    <string name="Password">password</string>
+    <string name="Authorize">Authorize</string>
+    <string name="Registration">Registration</string>
+</resources>

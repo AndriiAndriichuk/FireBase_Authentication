@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:gravity="center"
+    tools:context="com.ciuc.andrii.firebase_authentication.MainActivity">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/hint_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textColorHint="@color/text1"
+            app:errorEnabled="true"
+            app:hintTextAppearance="@style/MyHintText"
+            app:layout_constraintBottom_toTopOf="@+id/hint_pass"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Email"
+                android:textColor="@color/text1"
+                android:textColorHighlight="@color/text1"
+                android:textColorHint="@color/text1" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/hint_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_marginBottom="340dp"
+            android:textColorHint="@color/text1"
+            app:errorEnabled="true"
+            app:hintTextAppearance="@style/MyHintText"
+            app:layout_constraintBottom_toTopOf="@+id/constr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hint_login">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Password"
+                android:textColor="@color/text1"
+                android:textColorHighlight="@color/text1"
+                android:textColorHint="@color/text1" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/constr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/constraint_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hint_pass">
+
+            <Button
+                android:id="@+id/btnAuthorize"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_style"
+                android:text="@string/Authorize"
+                android:textColor="@color/text1" />
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_style"
+                android:text="@string/Registration"
+                android:textColor="@color/text1" />
+        </LinearLayout>
+
+
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraint_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraint_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constr">
+
+
+            <com.shaishavgandhi.loginbuttons.GoogleButton
+                android:id="@+id/btnGoogle"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="3dp"
+                android:layout_marginEnd="49dp"
+                android:gravity="center"
+                app:iconSize="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnFacebook"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:roundedCorner="true"
+                app:roundedCornerRadius="75dp" />
+
+            <com.shaishavgandhi.loginbuttons.FacebookButton
+                android:id="@+id/btnFacebook"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                app:iconSize="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnTwitter"
+                app:layout_constraintStart_toEndOf="@+id/btnGoogle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:roundedCorner="true"
+                app:roundedCornerRadius="75dp" />
+
+
+
+            <com.shaishavgandhi.loginbuttons.TwitterButton
+                android:id="@+id/btnTwitter"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                app:iconSize="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnGithub"
+                app:layout_constraintStart_toEndOf="@+id/btnFacebook"
+                app:layout_constraintTop_toTopOf="parent"
+                app:roundedCorner="true"
+                app:roundedCornerRadius="75dp" />
+
+            <ImageButton
+                android:id="@+id/btnGithub"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/btn_circle"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnTwitter"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+
+            android:id="@+id/constraint_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/bot"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraint_1">
+
+
+            <ImageButton
+                android:id="@+id/btnAnonymous"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/btnPhoneNumber"
+                android:background="@drawable/btn_circle2"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_user"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnPhoneNumber"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btnPhoneNumber"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/btn_circle1"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_keypad"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnYahoo"
+                app:layout_constraintStart_toEndOf="@+id/btnAnonymous"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageButton
+                android:id="@+id/btnYahoo"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/btnPhoneNumber"
+                android:background="@drawable/btn_circle2"
+                android:scaleType="fitXY"
+                android:padding="10dp"
+                android:src="@drawable/ic_yahoo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnMicrosoft"
+                app:layout_constraintStart_toEndOf="@+id/btnPhoneNumber"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btnMicrosoft"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/btnPhoneNumber"
+                android:background="@drawable/btn_circle2"
+                android:padding="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_microsoft"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnYahoo"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/bot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraint_2">
+
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/btn_facebook_login1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/btn_sign_in_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.twitter.sdk.android.core.identity.TwitterLoginButton
+                android:id="@+id/btn_twitter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+
+    </android.support.constraint.ConstraintLayout>
+</RelativeLayout>
